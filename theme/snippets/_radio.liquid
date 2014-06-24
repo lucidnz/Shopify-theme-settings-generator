@@ -1,0 +1,2 @@
+   {% for variant in p.variants %}{% capture variant_handle %}{% if variant.sku == blank %}{{ variant.option1 | handleize }}{% else %}{{ variant.sku }}{% endif %}{% endcapture %}<div><input type="radio" name="{{ product_handle }}" id="{{ product_handle }}" value="{{ variant_handle }}"{% if forloop.first %} checked="checked"{% endif %} /> {{ variant.title }}</div>
+           {% endfor %}

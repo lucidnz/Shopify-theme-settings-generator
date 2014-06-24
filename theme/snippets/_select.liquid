@@ -1,0 +1,3 @@
+<select name="{{ product_handle }}" id="{{ product_handle }}">{% for variant in p.variants %}{% capture variant_handle %}{% if variant.sku == blank %}{{ variant.option1 | handleize }}{% else %}{{ variant.sku }}{% endif %}{% endcapture %}{% unless forloop.first %}{% endunless %}
+          <option value="{{ variant_handle }}"{% if forloop.first %} selected="selected"{% endif %}>{{ variant.title }}</option>{% endfor %}
+        </select>

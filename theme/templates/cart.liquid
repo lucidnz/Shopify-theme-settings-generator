@@ -1,0 +1,94 @@
+<div id="col-main" class="full content">
+
+  <div id="page-header">
+    <h2 id="page-title">Shopping Cart</h2>
+  </div>
+
+  {% if cart.items == empty %} 
+    <p class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</p>
+
+  {% else %}
+    <form action="/cart" method="post" id="cartform" class="clearfix">
+
+      <table class="items">
+        <colgroup>
+          <col class="checkout-image" />
+          <col class="checkout-info" />
+          <col class="checkout-price" />
+          <col class="checkout-quantity" />
+          <col class="checkout-totals" />
+          <col class="checkout-delete" />
+        </colgroup>
+    
+        <thead>
+          <tr class="top-labels">
+            <th class="empty">&nbsp;</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th class="empty">&nbsp;</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in cart.items %}
+          <tr class="item {{ item.product.handle }}">
+            <td>
+              <a href="{{ item.product.url }}">
+                <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}"  alt="{{ item.product.title }}" />
+              </a>
+            </td>
+            <td>
+              <a href="{{ item.product.url }}">{{ item.title }}</a>
+              {% for p in item.properties %}
+                {% unless p.last == blank %}
+                  {{ p.first }}:
+                  {% if p.last contains '/uploads/' %}
+                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                  {{ p.last }}
+                  {% endif %}
+                  <br />
+                {% endunless %}
+              {% endfor %}
+            </td>
+            <td>{{ item.price | money }}</td>
+            <td> <input class="text quantity" type="text" size="4" id="updates_{{ item.id }}" name="updates[]" value="{{ item.quantity }}" class="replace" /> </td>
+            <td>{{ item.line_price | money }}</td>
+            <td><a class="btn remove-from-cart" href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        
+        <tfoot>
+          <tr class="bottom-summary">
+            <td colspan="3"></td>
+            <td class="update-quantities"><input type="submit" id="update-cart" class="btn" name="update" value="Update quantities" /></td>
+            <td class="subtotal">{{ cart.total_price | money }}</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      {% if settings.allow_note %}
+      <div id="checkout-addnote">
+        <label for="note"><a href="#" id="toggle-note">Add a note for the seller&hellip;</a></label>
+        <textarea id="note" name="note" class="hide">{{ cart.note }}</textarea>
+      </div>
+      {% endif %}
+
+      <div id="checkout-proceed">
+        <input class="btn-reversed btn" type="submit" id="update-cart" name="checkout" value="Proceed to Checkout" />
+        {% if additional_checkout_buttons %}
+        <div id="additional-checkout-buttons">
+          <span id="additional-checkout-buttons-label">Or check out using:</span>
+         {{ content_for_additional_checkout_buttons }}
+        </div>
+        {% endif %}                       
+      </div>
+
+    </form>
+  {% endif %}
+
+</div><!--/#col-main -->

@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+  <title>{{ shop.name }}</title>
+
+  {{ content_for_header }}
+  {{ 'styles.css' | asset_url | stylesheet_tag }}
+</head>
+
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="/">Shopify Theme Tools</a>
+        <ul class="nav">
+          <li><a href="/">Themes</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    {% if template == 'list-collections' %}
+    {% include 'collection-listing' %}
+    {% else %}
+    {{ content_for_layout }}
+    {% endif %}
+  </div>
+  <div class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+    </div>
+  </div>
+</body>
+</html>

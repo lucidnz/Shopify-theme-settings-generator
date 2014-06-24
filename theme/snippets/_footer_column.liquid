@@ -1,0 +1,26 @@
+<table class="standard-table">
+  <tbody>{% assign base_handle = product_handle %}
+    <tr>
+      <td>
+        <p>Blog</p>
+        <p>
+          {% assign product_handle = base_handle | append: '-blog' %}{% include '_blog' %}
+        </p>
+      </td>
+      <td>
+        <p>Menu</p>
+        <p>
+          {% assign product_handle = base_handle | append: '-menu' %}{% include '_linklist' %}
+        </p>
+      </td>
+    </tr>
+    <tr>  
+      <td colspan="2">
+        <p>Text</p>
+        <p>
+          {% assign product_handle = base_handle | append: '-text' %}{% include '_textarea' %}
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

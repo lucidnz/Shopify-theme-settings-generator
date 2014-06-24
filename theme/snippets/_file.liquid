@@ -1,0 +1,1 @@
+<input type="file" name="{{ product_handle }}.{% if _file != blank %}{{ _file }}{% else %}jpg{% endif %}" id="{{ product_handle }}"{% if p.price > 0 %} data-max-width="{{ p.price | divided_by: 100 }}"{% endif %} {% if p.compare_at_price > 0 %}data-max-height="{{ p.compare_at_price | divided_by: 100 }}"{% endif %} />

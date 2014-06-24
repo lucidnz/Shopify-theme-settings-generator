@@ -1,0 +1,55 @@
+<table class="standard-table">
+  <tbody>{% assign base_handle = product_handle %}
+    <tr>
+      <td>{% assign product_handle = base_handle | append: '-active' %}
+        <p>Activate slide {% include '_checkbox' %}</p>
+      </td>
+      <td>{% assign product_handle = base_handle | append: '-dark' %}
+        <p>Use dark text {% include '_checkbox' %}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>{% assign product_handle = base_handle | append: '-image' %}
+        <p>Slide image {% include '_jpeg' %}</p>
+      </td>
+      <td>{% assign product_handle = base_handle | append: '-position' %}
+        <p>Caption position</p>
+        <p>
+          <select name="{{ product_handle }}" id="{{ product_handle }}">
+            <option value="top left">top left</option>
+            <option value="top center">top center</option>
+            <option value="top right">top right</option>
+            <option value="middle left">middle left</option>
+            <option value="middle center">middle center</option>
+            <option value="middle right">middle right</option>
+            <option value="bottom left">bottom left</option>
+            <option value="bottom center">bottom center</option>
+            <option value="bottom right">bottom right</option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">{% assign product_handle = base_handle | append: '-heading' %}
+        <p>Heading</p>
+        <p>{% include '_text' %}</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">{% assign product_handle = base_handle | append: '-caption' %}
+        <p>Caption</p>
+        <p>{% include '_textarea' %}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>{% assign product_handle = base_handle | append: '-button-text' %}
+        <p>Button text</p>
+        <p>{% include '_text' %}</p>
+      </td>
+      <td>{% assign product_handle = base_handle | append: '-button-link' %}
+        <p>Button link</p>
+        <p>{% include '_text' %}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

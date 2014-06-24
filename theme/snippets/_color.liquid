@@ -1,0 +1,1 @@
+<input type="text" name="{{ product_handle }}" id="{{ product_handle }}" class="color" value="{% unless p.variants.first.option1 == "Default Title" %}{{ p.variants.first.option1 }}{% endunless %}" />

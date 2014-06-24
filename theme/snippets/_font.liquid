@@ -1,0 +1,56 @@
+<table class="standard-table">
+  <tbody>{% assign base_handle = product_handle %}
+    <tr>
+      <td>
+        <p>Custom font name</p>
+        <p>
+          {% assign product_handle = base_handle | append: '-custom' %}{% include '_text' %}
+        </p>
+      </td>
+      <td>
+        <p>Fallback/default</p>
+        <p>{% assign product_handle = base_handle %}
+          <select class="font" name="{{ product_handle }}" id="{{ product_handle }}">
+            <option value="" selected="selected"></option>
+          </select>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Weight</p>
+        <p>
+          {% assign product_handle = base_handle | append: '-weight' %}{% include '_text' %}
+        </p>
+      </td>
+      <td>
+        <p>Size (e.g. 14px)</p>
+        <p>
+          {% assign product_handle = base_handle | append: '-size' %}{% include '_text' %}
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Style</p>{% assign product_handle = base_handle | append: '-style' %}{% assign font_styles = 'Normal|Italic' | split:'|' %}
+        <p>
+        <select name="{{ product_handle }}" id="{{ product_handle }}">
+          {% for style in font_styles %}{% assign variant_handle = style | handleize %}
+            <option value="{{ variant_handle }}"{% if forloop.first %} selected="selected"{% endif %}>{{ style }}</option>
+          {% endfor %}
+        </select>
+        </p>
+      </td>
+      <td>
+        <p>Case</p>{% assign product_handle = base_handle | append: '-case' %}{% assign font_cases = 'Normal|lowercase|UPPERCASE|Title Case' | split:'|' %}
+        <p>
+        <select name="{{ product_handle }}" id="{{ product_handle }}">
+          {% for case in font_cases %}{% assign variant_handle = case | handleize %}
+            <option value="{{ variant_handle }}"{% if forloop.first %} selected="selected"{% endif %}>{{ case }}{% if case == 'Normal' %} (as typed){% endif %}</option>
+          {% endfor %}
+        </select>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

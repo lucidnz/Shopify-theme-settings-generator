@@ -1,0 +1,13 @@
+<h1>Themes</h1>
+<table class="table">
+  <tr>
+    <th>Theme</th>
+    <th>Settings</th>
+  </tr>
+  {% for theme in collections %}
+  <tr>
+    <td><strong>{{ theme.title | link_to: theme.url }}</strong></td>
+    <td>{{ theme.products.size }}</td>
+  </tr>
+  {% endfor %}
+</table>

@@ -1,0 +1,36 @@
+{% paginate collection.products by 999 %}<h2>{{ collection.title }}</h2>
+
+{% if collection.products.size > 0 %}
+
+  {% capture settings %}
+    <div class="section-info">
+    {% if collection.description != empty %}  {{ collection.description }}{% endif %}
+    </div>
+    
+    {% for v in linklists[collection.handle].links %}
+      <fieldset>
+      {% assign group = v.title %}	
+      <legend>{{ group }}</legend>
+      {% for p in collection.products %}{% if p.vendor == group %}{% if p.type == "Heading" %}{% unless p.variants.first.option1 == "Default Title" %}{% assign heading = p.variants.first.option1 %}{% else %}{% assign heading = p.title %}{% endunless %}
+        <h3>{{ heading | split: '|' | last }}</h3>
+        {% if p.description %}{{ p.description }}{% endif %}
+      {% else %}
+        <table>{% assign product_handle = p.handle | split: '|' | last %}
+          <tr>
+            <th><label for="{{ product_handle }}">{{ p.title | split: '|' | last }}</label></th>
+            <td>{% capture field_include %}{{ p.type | prepend: '_' | downcase }}{% endcapture %}
+              {% include field_include %}{% unless p.description == blank %}
+              <small>{{ p.description }}</small>{% endunless %}
+            </td>
+          </tr>
+        </table>{% endif %}{% endif %}{% endfor %}
+      </fieldset>{% endfor %}
+  {% endcapture %}
+
+  <textarea rows="25" style="width: 100%">
+    {{ settings }}
+  </textarea>
+      
+{% else %}    
+<strong>No settings for this theme. You can add them as products at <a href="/admin/products">in the back-end</a>.</strong>
+{% endif %}{% endpaginate %}

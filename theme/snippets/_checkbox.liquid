@@ -1,0 +1,1 @@
+{% if p.variants.size > 1 %}{% for variant in p.variants %}<input type="checkbox" name="{{ product_handle }}-{{ variant.title | handleize }}" id="{{ product_handle }}-{{ variant.title | handleize }}" value="1" /> {{ variant.title }}<br />{% endfor %}{% else %}<input type="checkbox" name="{{ product_handle }}" id="{{ product_handle }}" value="1" /> Yes{% endif %}
