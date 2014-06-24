@@ -65,7 +65,7 @@ Yes, by default. But this can be easily changed!
 
 You can order each setting within a group by prepending a number followed by a pipe:
 
-    1|My magnificent theme setting`
+    1|My magnificent theme setting
     
 Your settings will now be ordered inside their group according to your numbers. Don't worry the generator knows to remove the prepended number from the generated settings.
 
