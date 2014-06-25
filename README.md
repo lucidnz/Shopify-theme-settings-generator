@@ -77,6 +77,12 @@ Your settings will now be ordered inside their group according to your numbers. 
 
 3. Reorder your groups within the link-list like a professional!
 
+### Where do I find my generated settings file?
+
+On the store front, of course! The stores index page lists each of your settings collections. Navigate into the desired collection and there is a text area all ready with your themes settings pre-generated.
+
+The only thing left to do is to copy and paste this into your theme's `settings.html`.
+
 ### Will it cut through this old shoe?
 
 Yes!<sup>3</sup>
